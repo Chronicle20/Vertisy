@@ -80,7 +80,7 @@ public class MaplePacketCreator{
 	}
 
 	private static void addCharStats(final MaplePacketLittleEndianWriter mplew, MapleCharacter chr){// GW_CharacterStat::Decode
-		mplew.writeInt(0); // damage skin
+//		mplew.writeInt(0); // damage skin
 
 		mplew.writeInt(chr.getId()); // character id
 		mplew.writeAsciiString(StringUtil.getRightPaddedStr(chr.getName(), '\0', 13));// sCharacterName

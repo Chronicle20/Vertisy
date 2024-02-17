@@ -1,0 +1,44 @@
+version: '3.5'
+services:
+  db:
+    image: mysql:8.0.32
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./sql/dump.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: Vertisy90
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    networks:
+      - internal-net
+    container_name: db
+  app:
+    build:
+      context: ./
+      dockerfile: app.Dockerfile
+    restart: always
+    depends_on:
+      - "db"
+    environment:
+      WAIT_HOSTS: db:3306
+    ports:
+      - '7575:7575'
+      - '7576:7576'
+      - '8484:8484'
+    expose:
+      - '7575'
+      - '7576'
+      - '8484'
+    networks:
+      - internal-net
+    container_name: app
+    labels:
+      collect_logs_with_filebeat: "true"
+      decode_log_event_to_json_object: "true"
+networks:
+  internal-net:
+    name: internal-net

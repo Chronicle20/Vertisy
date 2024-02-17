@@ -8,11 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import com.mysql.jdbc.Statement;
 
 import tools.DatabaseConnection;
 import tools.logger.Logger;

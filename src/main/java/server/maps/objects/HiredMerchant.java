@@ -21,13 +21,12 @@ package server.maps.objects;
 import java.rmi.RemoteException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
-
-import com.mysql.jdbc.Statement;
 
 import client.MapleCharacter;
 import client.MapleClient;

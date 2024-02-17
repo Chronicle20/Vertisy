@@ -28,7 +28,7 @@ public class AutoRegister{
 			PreparedStatement ps = con.prepareStatement("SELECT name FROM accounts WHERE name = ?");
 			ps.setString(1, login);
 			ResultSet rs = ps.executeQuery();
-			if(rs.first()){
+			if(rs.next()){
 				accountExists = true;
 			}
 		}catch(Exception ex){
@@ -48,7 +48,7 @@ public class AutoRegister{
 			return false;
 		}
 		try{
-			try(PreparedStatement ipc = con.prepareStatement("SELECT ip FROM accounts WHERE ip = ?")){
+			try(PreparedStatement ipc = con.prepareStatement("SELECT ip FROM accounts WHERE ip = ?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)){
 				ipc.setString(1, sockAddr.substring(1, sockAddr.lastIndexOf(':')));
 				try(ResultSet rs = ipc.executeQuery()){
 					if(rs.first() == false || rs.last() == true/* && rs.getRow() < ACCOUNTS_PER_IP*/){

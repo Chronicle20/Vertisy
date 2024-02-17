@@ -436,7 +436,7 @@ public class MapleClient{
 			ps.setInt(1, getAccID());
 			rs = ps.executeQuery();
 			if(!rs.next()) return null;
-			long blubb = rs.getLong("tempban");
+			long blubb = rs.getTimestamp("tempban").getTime();
 			if(blubb == 0){ // basically if timestamp in db is 0000-00-00
 				return null;
 			}

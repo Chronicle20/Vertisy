@@ -81,8 +81,8 @@ public final class Channel{
 		long start = System.currentTimeMillis();
 		this.channelServer = channelServer;
 		this.channel = channel;
-		eventSM = new EventScriptManager();
-		eventSM.load(this, getEvents());
+//		eventSM = new EventScriptManager();
+//		eventSM.load(this, getEvents());
 		port = 7575 + this.channel;
 		port += (channelServer.getWorldID() * 100);
 		ip = ServerConstants.HOST + ":" + port;
@@ -91,7 +91,7 @@ public final class Channel{
 		boot = new ServerBootstrap().group(parentGroup, childGroup).channel(NioServerSocketChannel.class).childOption(ChannelOption.TCP_NODELAY, true).childOption(ChannelOption.SO_KEEPALIVE, true).childHandler(new MapleCodecFactory(channelServer.getWorldID(), channel));
 		try{
 			channelConnection = boot.bind(port).sync().channel().closeFuture().channel();
-			eventSM.init();
+//			eventSM.init();
 			loadMobTimes();
 			System.out.println("");
 			System.out.println("    Channel " + getId() + ": Listening on port " + port + ". Took " + ((System.currentTimeMillis() - start) / 1000.0) + " seconds.");
