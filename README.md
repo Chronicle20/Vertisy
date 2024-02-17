@@ -1,4 +1,6 @@
 ## Vertisy v90/v92 Fork
+THIS SOURCE IS WIP, AND NOT ACTIVELY MAINTAINED.
+If you want to start using the publically released Vertisy source, the recommendation is to fork from initial check-in.
 
 JDK 21 / MySQL 8.0.32
 
